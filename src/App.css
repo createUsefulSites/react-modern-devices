@@ -217,14 +217,16 @@ body {
     margin: 35px 0;
 }
 .content__items {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-    flex-wrap: wrap;
-    -webkit-box-pack: justify;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
+    display: grid;
+    grid-template: auto / repeat(3, 1fr);
+    justify-items: center;
+    gap: 20px;
+    height: auto;
+}
+@media (max-width: 1060px) {
+    .content__items {
+        grid-template: auto / repeat(2, 1fr);
+    }
 }
 .container {
     width: 90%;

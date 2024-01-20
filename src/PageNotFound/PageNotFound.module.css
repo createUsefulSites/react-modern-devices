@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&display=swap');
+
+.wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 35px;
+    display: flex;
+    flex-direction: column;
+    padding: 40px 20px;
+}
+
+.not_found_header {
+    font-family: 'Open Sans';
+    font-weight: 600;
+}
+
+.smile {
+    font-size: 60px;
+}

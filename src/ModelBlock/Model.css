@@ -1,14 +1,11 @@
 .model-block {
     width: 280px;
+    height: 454px;
     text-align: center;
-    margin-bottom: 65px;
-}
-.model-block:not(:nth-of-type(4n)) {
-    margin-right: 35px;
 }
 .model-block__image {
-    width: 200px;
-    height: 260px;
+    width: 71%;
+    height: 57%;
 }
 .model-block__title {
     font-size: 20px;
@@ -77,4 +74,12 @@
     font-size: 19px;
     line-height: 27px;
     letter-spacing: 0.015em;
+}
+
+@media (max-width: 770px) {
+    .model-block {
+        width: 230px;
+        height: 380px;
+        text-align: center;
+    }
 }

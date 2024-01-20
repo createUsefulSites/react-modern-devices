@@ -28,3 +28,10 @@
     background-color: #282828;
     color: #fff;
 }
+
+@media (max-width: 1175px) {
+    .categories ul {
+        max-width: 500px;
+        overflow: scroll;
+    }
+}

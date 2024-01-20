@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { TagContext } from '../App';
+import { TagContext } from './../pages/Home';
 import './SortPopUp.css';
 
 export default function SortPopUp({ setFieldVisibility, sortingVariantsFunc }) {

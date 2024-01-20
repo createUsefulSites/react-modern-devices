@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { TagContext } from '../App';
+import { TagContext } from './../pages/Home';
 import './List.css';
 
 export default function List() {

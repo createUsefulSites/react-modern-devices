@@ -11,23 +11,32 @@ export const TagContext = createContext('');
 export default function App() {
     const [models, setModels] = useState([]);
     const [additionalTag, setAdditionalTag] = useState('');
+    const [additionalCategory, setAdditionalCategory] = useState('');
     const [isLoading, setIsLoading] = useState(true);
 
+    // let string = 'some text here';
+    // string = string.replace(new RegExp('text'), 'a');
+
     useEffect(() => {
-        fetch('https://65aaa8cb081bd82e1d978003.mockapi.io/Models_info' + additionalTag)
+        setIsLoading(true);
+        fetch(
+            'https://65aaa8cb081bd82e1d978003.mockapi.io/Models_info?' +
+                additionalTag +
+                additionalCategory,
+        )
             .then((responce) => responce.json())
             .then((answer) => {
                 setModels(answer);
                 setIsLoading(false);
             });
-    }, [additionalTag]);
+    }, [additionalTag, additionalCategory]);
 
     return (
         <>
             <Header />
             <div className='content'>
                 <div className='container'>
-                    <TagContext.Provider value={setAdditionalTag}>
+                    <TagContext.Provider value={{ setAdditionalTag, setAdditionalCategory }}>
                         <TopCategories />
                     </TagContext.Provider>
                     <h2 className='content__title'>Все товары</h2>

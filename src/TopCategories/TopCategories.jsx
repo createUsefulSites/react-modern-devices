@@ -5,7 +5,7 @@ import sortUp from './../assets/sortUp.svg';
 import './TopCategories.css';
 
 export default function TopCategories() {
-    const [sortingType, setSortingType] = useState('популярности');
+    const [sortingType, setSortingType] = useState('выбрать');
     const [isFieldVisble, setIsFieldVisble] = useState(false);
 
     return (

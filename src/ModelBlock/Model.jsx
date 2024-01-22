@@ -1,42 +1,30 @@
 import './Model.css';
 
-export default function Model({ title, image, newModels, usedModels, memoryTypes, price }) {
+export default function Model({ title, image, memoryTypes, price, newModel }) {
     return (
         <div className='model-block'>
+            <div className='model-block__badges'>
+                {newModel && (
+                    <span className='model-block__badges__badge model-block__badges__new'>
+                        Новинка
+                    </span>
+                )}
+                <span className='model-block__badges__badge model-block__badges__new'>Новинка</span>
+                <span className='model-block__badges__badge model-block__badges__guarantee'>
+                    Гарантии
+                </span>
+                <img
+                    width='70px'
+                    src='https://mimilav.ru/wp-content/uploads/2022/11/Branding-badge-5.png'
+                    alt=''
+                />
+            </div>
             <img className='model-block__image' src={image} alt='iphone 14' />
             <h4 className='model-block__title'>{title}</h4>
-            <div className='model-block__selector'>
-                <ul>
-                    {newModels === true ? <li className='active'>новое</li> : ''}
-                    {usedModels === true ? <li>б/у товар</li> : ''}
-                </ul>
-                <ul>
-                    {memoryTypes?.map((memoryType, index) => {
-                        return (
-                            <li className={index === 0 ? 'active' : ''} key={memoryType}>
-                                {memoryType}
-                            </li>
-                        );
-                    })}
-                </ul>
-            </div>
             <div className='model-block__bottom'>
-                <div className='model-block__price'>от {price}₽</div>
-                <div className='button button--outline button--add'>
-                    <svg
-                        width='12'
-                        height='12'
-                        viewBox='0 0 12 12'
-                        fill='none'
-                        xmlns='http://www.w3.org/2000/svg'
-                    >
-                        <path
-                            d='M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z'
-                            fill='white'
-                        />
-                    </svg>
-                    <span>Добавить</span>
-                    <i>0</i>
+                <div className='model-block__price'>{price} ₽</div>
+                <div className='button button__card'>
+                    <span>В корзину</span>
                 </div>
             </div>
         </div>

@@ -9,9 +9,9 @@ export default function App() {
         <>
             <Header />
             <Routes>
-                <Route path='/' element={<Home />} />
-                <Route path='/cart' element={<div>Корзина</div>} />
-                <Route path='*' element={<NotFound />} />
+                <Route path='/react-modern-devices' element={<Home />} />
+                <Route path='/react-modern-devices/cart' element={<div>Корзина</div>} />
+                <Route path='/*' element={<NotFound />} />
             </Routes>
         </>
     );

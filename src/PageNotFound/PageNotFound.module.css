@@ -3,10 +3,12 @@
 .wrapper {
     max-width: 800px;
     margin: 0 auto;
+    min-height: 60vh;
     text-align: center;
     font-size: 35px;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     padding: 40px 20px;
 }
 

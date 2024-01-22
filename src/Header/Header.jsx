@@ -6,7 +6,7 @@ export default function Header() {
     return (
         <div className='header'>
             <div className='container'>
-                <Link to='/'>
+                <Link to='/react-modern-devices'>
                     <div className='header__logo' style={{ cursor: 'pointer' }}>
                         <img
                             width='50px'
@@ -21,7 +21,7 @@ export default function Header() {
                     </div>
                 </Link>
                 <div className='header__cart'>
-                    <Link to='/cart' className='button button--cart'>
+                    <Link to='/react-modern-devices/cart' className='button button--cart'>
                         <span>3</span>
                     </Link>
                 </div>

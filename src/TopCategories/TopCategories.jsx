@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import List from '../CategoriesList/List';
 import SortPopUp from '../SortPopUp/SortPopUp';
-import sortUp from './../assets/sortUp.svg';
 import './TopCategories.css';
 
 export default function TopCategories() {
@@ -13,7 +12,6 @@ export default function TopCategories() {
             <List />
             <div className='sort'>
                 <div className='sort__label'>
-                    <img src={sortUp} className='sort-arrow'></img>
                     <b>Сортировка по:</b>
                     <span onClick={() => setIsFieldVisble(!isFieldVisble)}>{sortingType}</span>
                 </div>

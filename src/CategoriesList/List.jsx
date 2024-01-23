@@ -1,12 +1,14 @@
-import { useState, useContext } from 'react';
-import { TagContext } from './../pages/Home';
+import { useState } from 'react';
 import './List.css';
+import { useDispatch } from 'react-redux';
+import { setAdditionalCategory } from './../redux/slices/filterSlice';
 
 export default function List() {
     const allModels = ['Все', 'Apple', 'Samsung', 'Huawei', 'Honor', 'Pocophone'];
     const allModelsForBackend = allModels.map((model) => 'category=' + model + '&');
+    allModelsForBackend[0] = '';
+    const dispatch = useDispatch();
     const [indexCheckedCategory, setIndexCheckedCategory] = useState(0);
-    const { setAdditionalTag, setAdditionalCategory } = useContext(TagContext);
 
     return (
         <div className='categories'>
@@ -16,17 +18,12 @@ export default function List() {
                         <li
                             onClick={() => {
                                 setIndexCheckedCategory(index);
-                                index === 0
-                                    ? setAdditionalCategory((prev) => '')
-                                    : setAdditionalCategory((prev) => {
-                                          allModelsForBackend.includes(prev)
-                                              ? (prev = prev.replace(
-                                                    new RegExp(prev),
-                                                    allModelsForBackend[index],
-                                                ))
-                                              : (prev += allModelsForBackend[index]);
-                                          return prev;
-                                      });
+                                dispatch(
+                                    setAdditionalCategory({
+                                        allModelsForBackend,
+                                        model: allModelsForBackend[index],
+                                    }),
+                                );
                             }}
                             className={index === indexCheckedCategory ? 'active' : ''}
                             key={index}

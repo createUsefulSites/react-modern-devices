@@ -1,18 +1,19 @@
-import { useEffect, useState, createContext, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Model from './../ModelBlock/Model';
 import Skeleton from './../assets/Skeleton';
 import TopCategories from './../TopCategories/TopCategories';
-
-export const TagContext = createContext('');
+import { useSelector } from 'react-redux';
 
 export default function Home() {
     const [models, setModels] = useState([]);
-    const [additionalTag, setAdditionalTag] = useState('');
-    const [additionalCategory, setAdditionalCategory] = useState('');
+    const additionalTag = useSelector((state) => state.filter.additionalTag);
+    const additionalCategory = useSelector((state) => state.filter.additionalCategory);
+
     const [isLoading, setIsLoading] = useState(true);
     const [searchInput, setSearchInput] = useState('');
     const [inputWidth, setInputWidth] = useState({ width: '0px', opacity: '0' });
     const searchField = useRef(null);
+    const inputRef = useRef(null);
 
     useEffect(() => {
         setIsLoading(true);
@@ -25,6 +26,11 @@ export default function Home() {
             .then((answer) => {
                 setModels(answer);
                 setIsLoading(false);
+                console.log(
+                    'https://65aaa8cb081bd82e1d978003.mockapi.io/Models_info?' +
+                        additionalTag +
+                        additionalCategory,
+                );
             });
     }, [additionalTag, additionalCategory]);
 
@@ -49,23 +55,23 @@ export default function Home() {
         <>
             <div className='content'>
                 <div className='container'>
-                    <TagContext.Provider value={{ setAdditionalTag, setAdditionalCategory }}>
-                        <TopCategories />
-                    </TagContext.Provider>
+                    <TopCategories />
                     <h2 className='content__title'>
                         Все товары
                         <div className='search_input_wrapper' ref={searchField}>
                             <img
-                                onClick={() =>
+                                onClick={() => {
+                                    inputRef.current.focus();
                                     setInputWidth((prev) => {
                                         return { width: '300px', opacity: '1' };
-                                    })
-                                }
+                                    });
+                                }}
                                 className='search_input__image'
                                 width='15px'
                                 src={'https://cdn-icons-png.flaticon.com/512/622/622669.png'}
                             />
                             <input
+                                ref={inputRef}
                                 placeholder='Что вы ищете?'
                                 className='search_input__input'
                                 style={{ ...inputWidth }}

@@ -1,34 +1,47 @@
-import { useEffect, useState, useRef } from 'react';
-import axios from 'axios';
+import { useEffect, useState, useRef, useCallback } from 'react';
+import debounce from 'lodash.debounce';
 import Model from './../ModelBlock/Model';
 import Skeleton from './../assets/Skeleton';
 import TopCategories from './../TopCategories/TopCategories';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchModels } from './../redux/slices/modelSlice';
 
 export default function Home() {
-    const [models, setModels] = useState([]);
     const additionalTag = useSelector((state) => state.filter.additionalTag);
     const additionalCategory = useSelector((state) => state.filter.additionalCategory);
+    const dispatch = useDispatch();
+    const { models, status } = useSelector((state) => state.models);
 
-    const [isLoading, setIsLoading] = useState(true);
     const [searchInput, setSearchInput] = useState('');
+    const [inputValueForBack, setInputValueForBack] = useState('');
     const [inputWidth, setInputWidth] = useState({ width: '0px', opacity: '0' });
     const searchField = useRef(null);
     const inputRef = useRef(null);
 
+    const updateSearchValue = useCallback(
+        debounce((value) => {
+            setInputValueForBack(value);
+        }, 300),
+        [],
+    );
+
     useEffect(() => {
-        setIsLoading(true);
-        axios
-            .get(
-                'https://65aaa8cb081bd82e1d978003.mockapi.io/Models_info?' +
-                    additionalTag +
+        (async () => {
+            dispatch(
+                fetchModels({
+                    inputValueForBack,
+                    additionalTag,
                     additionalCategory,
-            )
-            .then((responce) => {
-                setModels(responce.data);
-                setIsLoading(false);
-            });
-    }, [additionalTag, additionalCategory]);
+                }),
+            );
+        })();
+    }, [additionalTag, additionalCategory, inputValueForBack]);
+
+    function onChangeInput(event) {
+        const value = event.target.value;
+        setSearchInput(value);
+        updateSearchValue(value);
+    }
 
     useEffect(() => {
         if (inputWidth.opacity == '0') return;
@@ -64,7 +77,7 @@ export default function Home() {
                                 }}
                                 className='search_input__image'
                                 width='15px'
-                                src={'https://cdn-icons-png.flaticon.com/512/622/622669.png'}
+                                src='https://cdn-icons-png.flaticon.com/512/622/622669.png'
                             />
                             <input
                                 ref={inputRef}
@@ -72,7 +85,7 @@ export default function Home() {
                                 className='search_input__input'
                                 style={{ ...inputWidth }}
                                 onChange={(event) => {
-                                    setSearchInput(event.target.value);
+                                    onChangeInput(event);
                                 }}
                                 value={searchInput}
                                 type='text'
@@ -81,6 +94,7 @@ export default function Home() {
                                 <div
                                     onClick={() => {
                                         setSearchInput('');
+                                        setInputValueForBack('');
                                     }}
                                     className='search_input__close'
                                 >
@@ -90,15 +104,13 @@ export default function Home() {
                         </div>
                     </h2>
                     <div className='content__items'>
-                        {isLoading
-                            ? [...new Array(6)].map((skelet, index) => <Skeleton key={index} />)
-                            : models
-                                  .filter((model) => {
-                                      return model.title
-                                          .toLowerCase()
-                                          .includes(searchInput.toLowerCase());
-                                  })
-                                  .map((model) => <Model {...model} key={model.title} />)}
+                        {status === 'error' ? (
+                            <div>Ошибка</div>
+                        ) : status === 'loading' ? (
+                            [...new Array(6)].map((_, index) => <Skeleton key={index} />)
+                        ) : (
+                            models.map((model) => <Model {...model} key={model.title} />)
+                        )}
                     </div>
                 </div>
             </div>

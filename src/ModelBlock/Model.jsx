@@ -47,7 +47,7 @@ export default function Model({
                 <h4 className='model-block__title'>{title}</h4>
                 <div className='model-block__bottom'>
                     <div className='model-block__price'>{formatNumber(price)} ₽</div>
-                    <Link to=''>
+                    <Link>
                         <button
                             className='button button__card'
                             onClick={() =>

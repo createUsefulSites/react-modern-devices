@@ -1,4 +1,5 @@
 import { useEffect, useState, useRef } from 'react';
+import axios from 'axios';
 import Model from './../ModelBlock/Model';
 import Skeleton from './../assets/Skeleton';
 import TopCategories from './../TopCategories/TopCategories';
@@ -17,20 +18,15 @@ export default function Home() {
 
     useEffect(() => {
         setIsLoading(true);
-        fetch(
-            'https://65aaa8cb081bd82e1d978003.mockapi.io/Models_info?' +
-                additionalTag +
-                additionalCategory,
-        )
-            .then((responce) => responce.json())
-            .then((answer) => {
-                setModels(answer);
+        axios
+            .get(
+                'https://65aaa8cb081bd82e1d978003.mockapi.io/Models_info?' +
+                    additionalTag +
+                    additionalCategory,
+            )
+            .then((responce) => {
+                setModels(responce.data);
                 setIsLoading(false);
-                console.log(
-                    'https://65aaa8cb081bd82e1d978003.mockapi.io/Models_info?' +
-                        additionalTag +
-                        additionalCategory,
-                );
             });
     }, [additionalTag, additionalCategory]);
 

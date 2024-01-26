@@ -59,6 +59,8 @@ a {
     -moz-user-select: none;
     -ms-user-select: none;
     user-select: none;
+    font-weight: 500;
+    font-size: 16px;
 }
 .button,
 .button span {
@@ -168,14 +170,28 @@ a {
     align-items: center;
     line-height: 23px;
     padding: 12px 25px;
-}
-.button--cart svg {
     margin-right: 8px;
-    margin-bottom: 1px;
+    column-gap: 10px;
+}
+.cart__separator {
+    width: 1.2px;
+    height: 18px;
+    background-color: white;
+}
+.header__cart__rightPart {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    column-gap: 3px;
+}
+.button__cart__img {
+    margin-left: 20px;
+    margin-top: 2px;
 }
 .button--cart span {
-    font-weight: 600;
+    font-weight: 500;
     font-size: 16px;
+    position: relative;
 }
 .sort {
     position: relative;

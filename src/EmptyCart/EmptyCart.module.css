@@ -1,0 +1,35 @@
+.header {
+    font-size: 45px;
+    font-weight: 700;
+    font-family: 'Noto Sans JP';
+}
+
+.descr {
+    font-size: 20px;
+    width: 500px;
+    text-align: center;
+    margin-top: -20px;
+}
+
+.goMain {
+    background-color: #668fff;
+    border: none;
+    font-family: 'Noto Sans JP';
+    padding: 9px 20px 12px 20px;
+    border-radius: 15px;
+    font-size: 16px;
+    color: white;
+    cursor: pointer;
+    position: relative;
+
+    transition: background-color 0.2s linear;
+}
+
+.goMain:hover {
+    background-color: #4274ff;
+}
+
+.goMain:active {
+    background-color: #4274ff;
+    top: 1px;
+}

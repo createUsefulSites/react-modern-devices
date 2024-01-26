@@ -71,6 +71,8 @@
     letter-spacing: 0.015em;
 }
 .button__card {
+    position: relative;
+    z-index: 100000;
     width: 55%;
     border-radius: 10px !important;
     background-color: #668fff !important;

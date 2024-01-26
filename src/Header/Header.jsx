@@ -1,8 +1,12 @@
 import './Header.css';
 import { Link } from 'react-router-dom';
 import iphonesLogo from './../assets/iphones_logo.png';
+import { useSelector } from 'react-redux';
 
 export default function Header() {
+    const totalPrice = useSelector((state) => state.cart.totalPrice);
+    const totalCount = useSelector((state) => state.cart.totalCount);
+
     return (
         <div className='header'>
             <div className='container'>
@@ -22,7 +26,16 @@ export default function Header() {
                 </Link>
                 <div className='header__cart'>
                     <Link to='/react-modern-devices/cart' className='button button--cart'>
-                        <span>3</span>
+                        <span>{totalPrice} руб</span>
+                        <div className='cart__separator'></div>
+                        <div className='header__cart__rightPart'>
+                            <img
+                                width='18px'
+                                src='https://pngimg.com/d/shopping_cart_PNG4.png'
+                                alt='cart icon'
+                            />
+                            <span className='header__cart__counter'>{totalCount}</span>
+                        </div>
                     </Link>
                 </div>
             </div>

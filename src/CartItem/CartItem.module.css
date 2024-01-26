@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600;700&display=swap');
+@font-face {
+    font-weight: 600;
+    font-family: 'Graphik';
+    src: url(./../assets/fonts/Graphik-Medium.ttf);
+}
 
 .model__left_part,
 .model__right_part {
@@ -43,17 +48,16 @@
 
 .model_image__part__wrapper {
     max-width: 300px;
-    font-family: 'Noto Sans JP';
 }
 
 .model_image__header {
     font-weight: 700;
-    font-family: inherit;
-    font-size: 18px;
+    font-family: 'Graphik';
+    font-size: 20px;
 }
 
 .model_image__descr {
-    font-family: inherit;
+    font-family: 'Noto Sans JP';
     font-size: 14px;
     max-width: 250px;
     opacity: 0.6;
@@ -63,19 +67,18 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    font-family: 'Noto Sans JP';
 }
 
 .counter__value {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Graphik';
     font-weight: 600;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .price {
-    font-family: 'Noto Sans JP';
+    font-family: 'Graphik';
     font-weight: 600;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 .changed_opacity {

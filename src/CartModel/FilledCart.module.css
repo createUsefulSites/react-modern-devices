@@ -22,14 +22,13 @@
     justify-content: space-between;
     align-items: last baseline;
     gap: 4px;
-    font-family: 'Noto Sans JP';
 }
 
 .cart__header {
     font-size: 28px;
     font-weight: 600;
 
-    font-family: inherit;
+    font-family: 'Noto Sans JP';
     position: relative;
 }
 

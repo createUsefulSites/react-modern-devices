@@ -7,6 +7,10 @@ export default function Header() {
     const totalPrice = useSelector((state) => state.cart.totalPrice);
     const totalCount = useSelector((state) => state.cart.totalCount);
 
+    function formatNumber(number) {
+        return new Intl.NumberFormat('ru-RU').format(number);
+    }
+
     return (
         <div className='header'>
             <div className='container'>
@@ -26,7 +30,7 @@ export default function Header() {
                 </Link>
                 <div className='header__cart'>
                     <Link to='/react-modern-devices/cart' className='button button--cart'>
-                        <span>{totalPrice} руб</span>
+                        <span>{formatNumber(totalPrice)} руб</span>
                         <div className='cart__separator'></div>
                         <div className='header__cart__rightPart'>
                             <img

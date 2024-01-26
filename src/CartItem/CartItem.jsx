@@ -13,6 +13,10 @@ export default function CartItem(props) {
             : '';
     }
 
+    function formatNumber(number) {
+        return new Intl.NumberFormat('ru-RU').format(number);
+    }
+
     return (
         <div className={styles.model_wrapper}>
             <div className={styles.model__left_part}>
@@ -43,7 +47,7 @@ export default function CartItem(props) {
             </div>
 
             <div className={styles.model__right_part}>
-                <p className={styles.price}>{props.price} ₽</p>
+                <p className={styles.price}>{formatNumber(props.price)} ₽</p>
                 <img
                     onClick={() =>
                         dispatch(

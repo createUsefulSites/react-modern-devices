@@ -8,6 +8,10 @@ export default function FilledCart() {
     const { totalPrice, totalCount, items: cartItems } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
+    function formatNumber(number) {
+        return new Intl.NumberFormat('ru-RU').format(number);
+    }
+
     return (
         <>
             <div className={styles.cart}>
@@ -57,8 +61,11 @@ export default function FilledCart() {
 
                 <div className={styles.bottom_right_part}>
                     <div className={styles.total__price}>
-                        Сумма заказа:{' '}
-                        <span style={{ fontWeight: 'bold', color: '#1f5afc' }}>{totalPrice} ₽</span>
+                        Сумма заказа:
+                        <span style={{ fontWeight: 'bold', color: '#1f5afc' }}>
+                            {' '}
+                            {formatNumber(totalPrice)} ₽
+                        </span>
                     </div>
                     <button className={`${styles.button} ${styles.order_button}`}>
                         Оформить заказ

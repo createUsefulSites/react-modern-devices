@@ -2,21 +2,24 @@ import './Model.css';
 import { useDispatch } from 'react-redux';
 import { addProduct } from './../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
-export default function Model({ id, title, cartTitle, cartDescription, image, price, newModels }) {
+export default function Model({
+    id,
+    title,
+    cartTitle,
+    cartDescription,
+    image,
+    price,
+    newModels,
+    category,
+}) {
     const dispatch = useDispatch();
-    const [addInCart, setAddInCart] = useState('');
+    function formatNumber(number) {
+        return new Intl.NumberFormat('ru-RU').format(number);
+    }
 
     return (
-        <Link
-            onClick={(e) =>
-                e.target.tagName === 'SPAN' || e.target.tagName === 'BUTTON'
-                    ? setAddInCart((prev) => '')
-                    : setAddInCart((prev) => '/react-modern-devices/cart')
-            }
-            to={addInCart}
-        >
+        <Link to='/react-modern-devices/cart'>
             <div className='model-block'>
                 <div className='model-block__badges'>
                     {newModels && (
@@ -33,18 +36,29 @@ export default function Model({ id, title, cartTitle, cartDescription, image, pr
                         alt=''
                     />
                 </div>
-                <img className='model-block__image' src={image} alt='iphone 14' />
+                <img
+                    className={
+                        category === 'Apple'
+                            ? 'model-block__image'
+                            : 'model-block__image model-block__image__wider'
+                    }
+                    src={image}
+                />
                 <h4 className='model-block__title'>{title}</h4>
                 <div className='model-block__bottom'>
-                    <div className='model-block__price'>{price} ₽</div>
-                    <button
-                        className='button button__card'
-                        onClick={() =>
-                            dispatch(addProduct({ id, cartTitle, cartDescription, image, price }))
-                        }
-                    >
-                        <span>В корзину</span>
-                    </button>
+                    <div className='model-block__price'>{formatNumber(price)} ₽</div>
+                    <Link to=''>
+                        <button
+                            className='button button__card'
+                            onClick={() =>
+                                dispatch(
+                                    addProduct({ id, cartTitle, cartDescription, image, price }),
+                                )
+                            }
+                        >
+                            <span>В корзину</span>
+                        </button>
+                    </Link>
                 </div>
             </div>
         </Link>

@@ -49,6 +49,9 @@
     width: 150px;
     height: 200px;
 }
+.model-block__image__wider {
+    width: 195px !important;
+}
 .model-block__title {
     font-size: 18px;
     line-height: 24px;
@@ -72,13 +75,18 @@
 }
 .button__card {
     position: relative;
-    z-index: 100000;
-    width: 55%;
+    width: 150px;
     border-radius: 10px !important;
     background-color: #668fff !important;
+
+    transition: all 0.6s !important;
+}
+.button__card:active {
+    top: 1px;
+    background-color: #235cfb !important;
 }
 .model-block:hover .button__card {
-    background-color: #4978fa !important;
+    background-color: #3569f8 !important;
     transition: 0.3s;
 }
 

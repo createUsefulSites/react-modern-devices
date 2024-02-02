@@ -12,10 +12,16 @@ export default function Model({
     price,
     newModels,
     category,
+    widthCoefficient,
 }) {
     const dispatch = useDispatch();
     function formatNumber(number) {
         return new Intl.NumberFormat('ru-RU').format(number);
+    }
+
+    function setWidthImage() {
+        const resWidth = widthCoefficient ? 200 / widthCoefficient : 150;
+        return { width: `${resWidth}px` };
     }
 
     return (
@@ -36,14 +42,7 @@ export default function Model({
                         alt=''
                     />
                 </div>
-                <img
-                    className={
-                        category === 'Apple'
-                            ? 'model-block__image'
-                            : 'model-block__image model-block__image__wider'
-                    }
-                    src={image}
-                />
+                <img className='model-block__image' style={setWidthImage()} src={image} />
                 <h4 className='model-block__title'>{title}</h4>
                 <div className='model-block__bottom'>
                     <div className='model-block__price'>{formatNumber(price)} ₽</div>

@@ -1,14 +1,23 @@
-import { useState } from 'react';
 import './List.css';
-import { useDispatch } from 'react-redux';
-import { setAdditionalCategory } from './../redux/slices/filterSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { setAdditionalCategory, setindexCheckedCategory } from './../redux/slices/filterSlice';
 
 export default function List() {
     const allModels = ['Все', 'Apple', 'Samsung', 'Huawei', 'Honor', 'Pocophone'];
     const allModelsForBackend = allModels.map((model) => 'category=' + model + '&');
     allModelsForBackend[0] = '';
     const dispatch = useDispatch();
-    const [indexCheckedCategory, setIndexCheckedCategory] = useState(0);
+    const indexCheckedCategory = useSelector((state) => state.filter.indexCheckedCategory);
+
+    function setCategory(index) {
+        dispatch(setindexCheckedCategory(index));
+        dispatch(
+            setAdditionalCategory({
+                allModelsForBackend,
+                model: allModelsForBackend[index],
+            }),
+        );
+    }
 
     return (
         <div className='categories'>
@@ -16,15 +25,7 @@ export default function List() {
                 {allModels.map((model, index) => {
                     return (
                         <li
-                            onClick={() => {
-                                setIndexCheckedCategory(index);
-                                dispatch(
-                                    setAdditionalCategory({
-                                        allModelsForBackend,
-                                        model: allModelsForBackend[index],
-                                    }),
-                                );
-                            }}
+                            onClick={() => setCategory(index)}
                             className={index === indexCheckedCategory ? 'active' : ''}
                             key={index}
                         >

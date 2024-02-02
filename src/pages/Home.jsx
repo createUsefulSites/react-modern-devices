@@ -5,6 +5,7 @@ import Skeleton from './../assets/Skeleton';
 import TopCategories from './../TopCategories/TopCategories';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchModels } from './../redux/slices/modelSlice';
+import FailedToLoadResourses from '../assets/FailedToLoadResourses/FailedToLoadResourses';
 
 export default function Home() {
     const additionalTag = useSelector((state) => state.filter.additionalTag);
@@ -62,6 +63,8 @@ export default function Home() {
 
     return (
         <>
+            <div className='popup__wrapper'>some text</div>
+
             <div className='content'>
                 <div className='container'>
                     <TopCategories />
@@ -105,7 +108,7 @@ export default function Home() {
                     </h2>
                     <div className='content__items'>
                         {status === 'error' ? (
-                            <div>Ошибка</div>
+                            <FailedToLoadResourses />
                         ) : status === 'loading' ? (
                             [...new Array(6)].map((_, index) => <Skeleton key={index} />)
                         ) : (

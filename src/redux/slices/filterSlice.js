@@ -3,6 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
     additionalTag: '',
     additionalCategory: '',
+    indexCheckedCategory: 0,
 };
 
 export const filterSlice = createSlice({
@@ -25,9 +26,21 @@ export const filterSlice = createSlice({
                   ))
                 : (state.additionalCategory += action.payload.model);
         },
+        setindexCheckedCategory(state, action) {
+            state.indexCheckedCategory = action.payload;
+        },
+        resetAllParametrs(state) {
+            state.additionalCategory = '';
+            state.additionalTag = '';
+        },
     },
 });
 
-export const { setAdditionalTag, setAdditionalCategory } = filterSlice.actions;
+export const {
+    setindexCheckedCategory,
+    setAdditionalTag,
+    setAdditionalCategory,
+    resetAllParametrs,
+} = filterSlice.actions;
 
 export default filterSlice.reducer;

@@ -63,8 +63,6 @@ export default function Home() {
 
     return (
         <>
-            <div className='popup__wrapper'>some text</div>
-
             <div className='content'>
                 <div className='container'>
                     <TopCategories />

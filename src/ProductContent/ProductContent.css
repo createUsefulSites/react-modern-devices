@@ -1,0 +1,247 @@
+@font-face {
+    font-family: 'Graphik';
+    src: url('./../assets/fonts/Graphik-Semibold.ttf');
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('./../assets/fonts/Graphik-Medium.ttf');
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: 'Graphik';
+    src: url('./../assets/fonts/Graphik-Regular.ttf');
+    font-weight: 400;
+}
+
+.model_wrapper {
+    padding-top: 40px;
+    width: 90%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    row-gap: 15px;
+}
+
+p {
+    color: white;
+}
+
+.model__main_block {
+    display: flex;
+}
+
+.model__left_side,
+.model__right_side {
+    position: relative;
+
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+}
+
+.model__right_side {
+    row-gap: 30px;
+}
+
+.bigger__part {
+    height: 150vh;
+    width: 650px;
+}
+
+.model__left_side {
+    top: 10px;
+    position: sticky;
+    flex-direction: row-reverse;
+    justify-content: start;
+    flex-grow: 3;
+    height: auto;
+    max-width: 650px;
+}
+
+.model__image {
+    height: 400px;
+    padding-left: 50px;
+}
+
+.model__header {
+    font-size: 26px;
+    font-weight: 600;
+    max-width: 380px;
+}
+
+.model__selector {
+    display: flex;
+    align-items: center;
+    column-gap: 10px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.model__selector__header {
+    font-size: 16px;
+    font-weight: 600;
+    width: 100px;
+}
+
+.model__selector__checkbox {
+    padding: 7px 20px;
+    font-size: 15px;
+    font-weight: 700;
+    border: 1.6px solid rgba(128, 128, 128, 0.35);
+    color: rgba(0, 0, 0, 0.8);
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.header_and_badges {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.model__selector__checkbox_current {
+    border: 2px solid #668fff;
+}
+
+.br {
+    height: 1px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    width: 100%;
+}
+
+.price__block {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.current_price {
+    font-family: 'Graphik';
+    font-weight: 600;
+    font-size: 30px;
+    font-weight: 800;
+}
+
+/* buttons */
+
+.models_buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.model__button {
+    position: relative;
+    z-index: 100;
+    border: none;
+    width: 100%;
+    padding: 13px;
+    color: white;
+    border-radius: 7px;
+    font-size: 16px;
+    font-weight: 700;
+    background-color: #668fff;
+    cursor: pointer;
+
+    transition: all 0.3s;
+}
+
+.bottom__part_price {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.model__button__text {
+    color: white;
+    box-shadow: 0px 40px 100px #4676fc, 0px 40px 120px #4676fc, 0px 40px 160px #4676fc,
+        0px 30px 80px #4676fc;
+}
+
+.button_add_to_cart::before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 0;
+    width: 15px;
+    height: 100%;
+    transform: skewX(-10deg);
+    background-color: #ffffff71;
+    box-shadow: 0px 0px 20px #ffffff71, 0px 0px 30px #ffffff71;
+    opacity: 70%;
+    animation: button_effect 4s linear infinite;
+}
+
+.discount {
+    opacity: 0.5;
+    font-size: 15px;
+}
+
+.model__button:hover {
+    background-color: #4f7efd;
+    box-shadow: 0px 0px 20px #4274ff5e;
+}
+
+.model__button:hover .model__button__text {
+    box-shadow: 0px 20px 100px #4676fc, 0px 20px 120px #4676fc, 0px 40px 160px #4676fc,
+        0px 60px 180px #4676fc;
+}
+
+@keyframes button_effect {
+    0% {
+        left: -40px;
+    }
+    20% {
+        left: calc(100% + 40px);
+    }
+    100% {
+        left: calc(100% + 40px);
+    }
+}
+
+.button_black_model {
+    padding: auto;
+    position: relative;
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3px;
+    z-index: 1;
+}
+
+.button_black_model:hover {
+    background-color: black;
+    box-shadow: 0px 0px 20px #1b1b1c3f;
+}
+
+.button_black_model__image {
+    position: relative;
+    top: 2px;
+}
+
+/* swiper */
+
+.mySwiper {
+    width: 100px;
+    height: 395px;
+    padding: 0 !important;
+    margin: 0 !important;
+    margin-right: 60px !important;
+}
+
+.swiper-slide {
+    border-radius: 10px;
+    text-align: center;
+    height: 89px !important;
+    width: 90px !important;
+}
+.swiper-slide-active {
+    border: 2px solid #668fff;
+}

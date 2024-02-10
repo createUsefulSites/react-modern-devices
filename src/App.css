@@ -69,13 +69,6 @@ a {
 .button span {
     color: #fff;
 }
-.button i,
-.button span,
-.button path,
-.button svg {
-    -webkit-transition: all 0.15s ease-in-out;
-    transition: all 0.15s ease-in-out;
-}
 .button:hover {
     background-color: var(--main-color-theme-hover);
 }

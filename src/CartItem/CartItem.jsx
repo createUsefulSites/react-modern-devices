@@ -5,11 +5,20 @@ import { useDispatch } from 'react-redux';
 import { removeProduct, addProduct } from './../redux/slices/cartSlice';
 
 export default function CartItem(props) {
+    console.log(props);
     const dispatch = useDispatch();
 
     function removeOneProduct() {
         props.count > 1
-            ? dispatch(removeProduct({ id: props.id, count: 1, price: props.price }))
+            ? dispatch(
+                  removeProduct({
+                      id: props.id,
+                      cartTitle: props.cartTitle,
+                      cartDescription: props.cartDescription,
+                      count: 1,
+                      price: props.price,
+                  }),
+              )
             : '';
     }
 
@@ -51,7 +60,13 @@ export default function CartItem(props) {
                 <img
                     onClick={() =>
                         dispatch(
-                            removeProduct({ id: props.id, count: props.count, price: props.price }),
+                            removeProduct({
+                                id: props.id,
+                                cartTitle: props.cartTitle,
+                                cartDescription: props.cartDescription,
+                                count: props.count,
+                                price: props.price,
+                            }),
                         )
                     }
                     width='20px'

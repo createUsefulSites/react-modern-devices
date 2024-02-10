@@ -24,4 +24,4 @@ dist-ssr
 *.sw?
 
 #data info
-models_data.txt
+models_data.json

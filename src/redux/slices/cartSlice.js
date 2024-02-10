@@ -11,7 +11,11 @@ export const cartSlice = createSlice({
     initialState,
     reducers: {
         addProduct(state, action) {
-            const addedItem = state.items.find((model) => model.id === action.payload.id);
+            const addedItem = state.items.find(
+                (model) =>
+                    model.cartTitle + model.cartDescription ===
+                    action.payload.cartTitle + action.payload.cartDescription,
+            );
             if (addedItem) ++addedItem.count;
             else state.items.push({ ...action.payload, count: 1 });
 
@@ -26,7 +30,10 @@ export const cartSlice = createSlice({
         removeProduct(state, action) {
             let elementIndex;
             state.items.forEach((model, index) => {
-                if (model.id === action.payload.id) {
+                if (
+                    model.cartTitle + model.cartDescription ===
+                    action.payload.cartTitle + action.payload.cartDescription
+                ) {
                     elementIndex = index;
                 }
             });

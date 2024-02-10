@@ -7,45 +7,20 @@
 
     transition: all 0.3s;
 }
+p {
+    color: black !important;
+}
+.badges_wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
 .model-block:hover {
     box-shadow: 0 0 17px rgba(0, 0, 0, 0.1);
 }
 
-.model-block__badges {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    row-gap: 7px;
-    margin-bottom: 25px;
-}
-.model-block__badges__badge {
-    color: white;
-    font-weight: 600;
-    font-size: 12px;
-    padding: 5px;
-    border-radius: 7px;
-    position: relative;
-}
-.model-block__badges__badge:not(:last-child) {
-    margin-right: 25px;
-}
-.model-block__badges__badge:not(:last-child)::after {
-    content: '';
-    background-color: #d5d3da;
-    border-radius: 50%;
-    width: 4px;
-    height: 4px;
-    position: absolute;
-    right: -15px;
-    top: 9px;
-}
-.model-block__badges__guarantee {
-    background-color: #6dc7ef;
-}
-.model-block__badges__new {
-    background-color: #2ad8d2;
-}
 .model-block__image {
+    margin-top: 25px;
     width: 150px;
     height: 200px;
 }

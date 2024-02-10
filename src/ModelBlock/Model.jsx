@@ -2,6 +2,7 @@ import './Model.css';
 import { useDispatch } from 'react-redux';
 import { addProduct } from './../redux/slices/cartSlice';
 import { Link } from 'react-router-dom';
+import ModelBlockBadges from '../ModelBlockBadges/ModelBlockBadges';
 
 export default function Model({
     id,
@@ -11,7 +12,6 @@ export default function Model({
     image,
     price,
     newModels,
-    category,
     widthCoefficient,
 }) {
     const dispatch = useDispatch();
@@ -25,22 +25,10 @@ export default function Model({
     }
 
     return (
-        <Link to='/react-modern-devices/cart'>
+        <Link to={'/react-modern-devices/product/' + id}>
             <div className='model-block'>
-                <div className='model-block__badges'>
-                    {newModels && (
-                        <span className='model-block__badges__badge model-block__badges__new'>
-                            Новинка
-                        </span>
-                    )}
-                    <span className='model-block__badges__badge model-block__badges__guarantee'>
-                        Гарантии
-                    </span>
-                    <img
-                        width='70px'
-                        src='https://mimilav.ru/wp-content/uploads/2022/11/Branding-badge-5.png'
-                        alt=''
-                    />
+                <div className='badges_wrapper'>
+                    <ModelBlockBadges newModels={newModels} />
                 </div>
                 <img className='model-block__image' style={setWidthImage()} src={image} />
                 <h4 className='model-block__title'>{title}</h4>

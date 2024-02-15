@@ -3,8 +3,9 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import ProductContent from '../../ProductContent/ProductContent';
+import ProductLoading from './ProductLoading';
 
-export default function Product(props) {
+export default function Product() {
     const [modelInfo, setModelInfo] = useState(null);
     const { id } = useParams();
 
@@ -16,14 +17,18 @@ export default function Product(props) {
                 );
                 setModelInfo((prev) => data);
             } catch (error) {
-                console.log(error);
+                console.log('Товар не найден');
             }
         })();
     }, []);
 
     return (
         <>
-            {modelInfo ? <div>{<ProductContent {...modelInfo}></ProductContent>}</div> : 'загрузка'}
+            {modelInfo ? (
+                <div>{<ProductContent {...modelInfo}></ProductContent>}</div>
+            ) : (
+                <ProductLoading />
+            )}
         </>
     );
 }

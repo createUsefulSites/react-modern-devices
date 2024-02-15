@@ -6,6 +6,8 @@ export default function List() {
     const allModels = ['Все', 'Apple', 'Samsung', 'Huawei', 'Honor', 'Pocophone'];
     const allModelsForBackend = allModels.map((model) => 'category=' + model + '&');
     allModelsForBackend[0] = '';
+    const status = useSelector((state) => state.models.status);
+
     const dispatch = useDispatch();
     const indexCheckedCategory = useSelector((state) => state.filter.indexCheckedCategory);
 
@@ -25,7 +27,11 @@ export default function List() {
                 {allModels.map((model, index) => {
                     return (
                         <li
-                            onClick={() => setCategory(index)}
+                            onClick={() => {
+                                if (status === 'success') {
+                                    setTimeout(() => setCategory(index), 20);
+                                }
+                            }}
                             className={index === indexCheckedCategory ? 'active' : ''}
                             key={index}
                         >

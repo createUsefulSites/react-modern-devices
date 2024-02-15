@@ -1,4 +1,4 @@
-import { createSlice, current } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     currentPrice: 0,
@@ -24,8 +24,6 @@ export const productContentSlice = createSlice({
                 action.payload.currentMemory,
             );
             state.currentMemory = action.payload.currentMemory;
-
-            console.log(current(state));
         },
         changeCurrentSim(state, action) {
             state.title = state.title.replace(state.simType, action.payload);

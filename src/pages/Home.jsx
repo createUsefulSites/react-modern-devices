@@ -11,13 +11,15 @@ export default function Home() {
     const additionalTag = useSelector((state) => state.filter.additionalTag);
     const additionalCategory = useSelector((state) => state.filter.additionalCategory);
     const dispatch = useDispatch();
-    const { models, status } = useSelector((state) => state.models);
 
     const [searchInput, setSearchInput] = useState('');
     const [inputValueForBack, setInputValueForBack] = useState('');
     const [inputWidth, setInputWidth] = useState({ width: '0px', opacity: '0' });
     const searchField = useRef(null);
     const inputRef = useRef(null);
+
+    const status = useSelector((state) => state.models.status);
+    const models = JSON.parse(localStorage.getItem('models'));
 
     const updateSearchValue = useCallback(
         debounce((value) => {

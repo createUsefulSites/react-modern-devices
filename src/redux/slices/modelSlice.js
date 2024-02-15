@@ -13,35 +13,69 @@ export const fetchModels = createAsyncThunk(
     },
 );
 
+export const fetchTopModels = createAsyncThunk('model/fetchTopModelsStatus', async () => {
+    const { data } = await axios.get(
+        'https://65aaa8cb081bd82e1d978003.mockapi.io/Models_info?sortBy=rating=asc&limit=9&page=1',
+    );
+    return data;
+});
+
+export const fetchSameModels = createAsyncThunk('model/fetchSameModelsStatus', async (model) => {
+    const { data } = await axios.get(
+        `https://65aaa8cb081bd82e1d978003.mockapi.io/Models_info?category=${model}`,
+    );
+    return data;
+});
+
 const initialState = {
-    models: [],
     status: 'loading',
+    topModelsStatus: 'loading',
+    sameModelsStatus: 'loading',
 };
 
 export const modelSlice = createSlice({
     name: 'model',
     initialState,
-    reducers: {
-        setModels(state, action) {
-            state.models = action.payload;
-        },
-    },
     extraReducers: (builder) => {
         builder.addCase(fetchModels.pending, (state) => {
+            localStorage.removeItem('models');
             state.status = 'loading';
-            state.models = [];
         });
         builder.addCase(fetchModels.fulfilled, (state, action) => {
-            state.models = action.payload;
+            localStorage.setItem('models', JSON.stringify(action.payload));
             state.status = 'success';
         });
         builder.addCase(fetchModels.rejected, (state) => {
+            localStorage.removeItem('models');
             state.status = 'error';
-            state.models = [];
+        });
+
+        builder.addCase(fetchTopModels.pending, (state) => {
+            localStorage.removeItem('topModels');
+            state.topModelsStatus = 'loading';
+        });
+        builder.addCase(fetchTopModels.fulfilled, (state, action) => {
+            localStorage.setItem('topModels', JSON.stringify(action.payload));
+            state.topModelsStatus = 'success';
+        });
+        builder.addCase(fetchTopModels.rejected, (state) => {
+            localStorage.localStorage.removeItem('topModels');
+            state.topModelsStatus = 'error';
+        });
+
+        builder.addCase(fetchSameModels.pending, (state) => {
+            localStorage.removeItem('sameModels');
+            state.sameModelsStatus = 'loading';
+        });
+        builder.addCase(fetchSameModels.fulfilled, (state, action) => {
+            localStorage.setItem('sameModels', JSON.stringify(action.payload));
+            state.sameModelsStatus = 'success';
+        });
+        builder.addCase(fetchSameModels.rejected, (state) => {
+            localStorage.localStorage.removeItem('sameModels');
+            state.sameModelsStatus = 'error';
         });
     },
 });
-
-export const { setModels } = modelSlice.actions;
 
 export default modelSlice.reducer;

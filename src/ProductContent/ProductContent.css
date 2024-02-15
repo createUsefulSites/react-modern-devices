@@ -17,7 +17,7 @@
 }
 
 .model_wrapper {
-    padding-top: 40px;
+    padding-top: 20px;
     width: 90%;
     margin: 0 auto;
     display: flex;
@@ -49,12 +49,14 @@ p {
 }
 
 .bigger__part {
-    height: 150vh;
+    height: 760px;
     width: 650px;
+    margin-bottom: 30px;
 }
 
 .model__left_side {
-    top: 10px;
+    padding-top: 50px;
+    top: 100px;
     position: sticky;
     flex-direction: row-reverse;
     justify-content: start;
@@ -65,7 +67,6 @@ p {
 
 .model__image {
     height: 400px;
-    padding-left: 50px;
 }
 
 .model__header {
@@ -226,14 +227,97 @@ p {
     top: 2px;
 }
 
+/* U may like block */
+
+.recommended__header {
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.сharactericstics__header {
+    font-size: 30px;
+    font-weight: 600;
+    margin: 40px 0 20px 0;
+}
+
+/* Характеристики */
+
+.character__info__wrapper {
+    display: flex;
+    margin-bottom: 25px;
+}
+
+.character__info__title {
+    font-size: 18px;
+    font-weight: 600;
+    width: 200px;
+}
+
+.character__info__left,
+.character__info__right {
+    flex-grow: 10;
+}
+
+.character__info__right {
+    flex-grow: 11;
+    display: flex;
+    flex-direction: column;
+}
+
+.character__info__descr__wrapper {
+    position: relative;
+    display: flex;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    column-gap: 110px;
+}
+
+.character__info__descr__wrapper:not(:first-child) {
+    padding-top: 30px;
+}
+
+.character__info__descr__wrapper::after {
+    content: '';
+    width: 100%;
+    height: 1.2px;
+    border-radius: 2px;
+    background-color: #e8e8ed;
+    position: absolute;
+    bottom: 1px;
+}
+
+.character__info__descr__header {
+    font-weight: 500;
+    width: 200px;
+}
+
+.item_memory {
+    list-style: disc;
+    margin-bottom: 10px;
+}
+
+.item_memory:last-child {
+    margin-bottom: 0;
+}
+
+.character__info__descr__inner {
+    font-weight: 500;
+    min-width: 500px;
+}
+
+.capitalize {
+    text-transform: capitalize;
+}
+
 /* swiper */
 
 .mySwiper {
     width: 100px;
     height: 395px;
     padding: 0 !important;
-    margin: 0 !important;
-    margin-right: 60px !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
 }
 
 .swiper-slide {
@@ -242,6 +326,108 @@ p {
     height: 89px !important;
     width: 90px !important;
 }
+
 .swiper-slide-active {
     border: 2px solid #668fff;
+}
+
+/* deliver block */
+
+.deliver__product {
+    width: 100%;
+    height: auto;
+    padding: 24px 36px;
+    background-color: #f5f5fa;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 18px;
+    cursor: default;
+}
+
+.discount__product__section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.discount__product {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+}
+
+.discount__product__info_block__main {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.discount__product__info_block__descr {
+    font-size: 13px;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.mySwiper2 {
+    height: auto;
+    width: 85%;
+}
+
+.swiper-slide2 {
+    border-radius: 10px;
+    text-align: center;
+    height: auto !important;
+    width: auto !important;
+}
+
+.s-button-next2,
+.s-button-prev2 {
+    background-image: url('https://cdn.icon-icons.com/icons2/1993/PNG/512/arrows_chevron_direction_left_move_next_right_icon_123222.png');
+    width: 30px;
+    height: 30px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    cursor: pointer;
+    right: 70px;
+}
+
+.s-button-prev2 {
+    transform: rotate(180deg);
+    right: 0;
+    left: 70px;
+}
+
+.s-button-next2::before,
+.s-button-prev2::before {
+    content: '';
+    border-radius: 50%;
+    background-color: rgba(234, 234, 234, 0.5);
+    height: calc(100% + 13px);
+    left: -7px;
+    top: -7px;
+    position: absolute;
+    width: calc(100% + 13px);
+
+    transition: background-color 0.1s linear;
+}
+
+.s-button-next2:hover::before,
+.s-button-prev2:hover::before {
+    background-color: rgba(190, 190, 190, 0.5);
+}
+
+.swiper__bottom__wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.skeletons__wrapper {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    gap: 40px;
 }

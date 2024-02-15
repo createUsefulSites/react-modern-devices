@@ -2,6 +2,7 @@ import './Header.css';
 import { Link, useLocation } from 'react-router-dom';
 import iphonesLogo from './../assets/iphones_logo.png';
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useRef } from 'react';
 import { resetAllParametrs, setindexCheckedCategory } from './../redux/slices/filterSlice';
 
 export default function Header() {
@@ -9,6 +10,22 @@ export default function Header() {
     const totalCount = useSelector((state) => state.cart.totalCount);
     const { pathname } = useLocation();
     const dispatch = useDispatch();
+
+    const headerRef = useRef(null);
+
+    useEffect(() => {
+        function headerStickyHandler() {
+            if (headerRef.current.getBoundingClientRect().top === 0) {
+                headerRef.current.style.boxShadow = '0 5px 10px rgba(0, 0, 0, 0.1)';
+            } else {
+                headerRef.current.style.boxShadow = '';
+            }
+        }
+
+        document.addEventListener('scroll', headerStickyHandler);
+
+        return () => document.removeEventListener('scroll', headerStickyHandler);
+    }, []);
 
     function formatNumber(number) {
         return new Intl.NumberFormat('ru-RU').format(number);
@@ -20,7 +37,7 @@ export default function Header() {
     }
 
     return (
-        <div className='header'>
+        <div ref={headerRef} className='header'>
             <div className='container'>
                 <Link to='/react-modern-devices'>
                     <div

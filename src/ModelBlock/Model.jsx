@@ -13,6 +13,10 @@ export default function Model({
     price,
     newModels,
     widthCoefficient,
+    clickHandler,
+    heightValue,
+    fontSize,
+    fullSize = true,
 }) {
     const dispatch = useDispatch();
     function formatNumber(number) {
@@ -20,18 +24,31 @@ export default function Model({
     }
 
     function setWidthImage() {
-        const resWidth = widthCoefficient ? 200 / widthCoefficient : 150;
-        return { width: `${resWidth}px` };
+        return widthCoefficient
+            ? `${widthCoefficient ? heightValue / widthCoefficient : 150}px`
+            : '';
     }
 
     return (
-        <Link to={'/react-modern-devices/product/' + id}>
-            <div className='model-block'>
+        <Link
+            onClick={() => {
+                window.scrollTo(0, 0);
+                if (clickHandler) clickHandler();
+            }}
+            to={'/react-modern-devices/product/' + id}
+        >
+            <div className='model-block' style={{ height: fullSize ? '490px' : '400px' }}>
                 <div className='badges_wrapper'>
                     <ModelBlockBadges newModels={newModels} />
                 </div>
-                <img className='model-block__image' style={setWidthImage()} src={image} />
-                <h4 className='model-block__title'>{title}</h4>
+                <img
+                    className='model-block__image'
+                    style={{ width: setWidthImage(), height: heightValue }}
+                    src={image}
+                />
+                <h4 style={{ fontSize: fontSize }} className='model-block__title'>
+                    {title}
+                </h4>
                 <div className='model-block__bottom'>
                     <div className='model-block__price'>{formatNumber(price)} ₽</div>
                     <Link>

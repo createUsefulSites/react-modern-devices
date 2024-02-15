@@ -1,0 +1,32 @@
+.loading_main_wrapper {
+    display: flex;
+    justify-content: center;
+    width: 93vw;
+    height: 100vh;
+}
+
+.main_inner_wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 700px;
+    text-align: center;
+    height: 60vh;
+    flex-direction: column;
+}
+
+.main_wrapper__header {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.main_wrapper__descr {
+    width: 500px;
+    font-size: 24px;
+    font-weight: 400;
+}
+
+.loading_gif {
+    filter: invert(1);
+}

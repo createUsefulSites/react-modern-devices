@@ -1,31 +1,24 @@
 import './ProductContent.css';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { addProduct } from './../redux/slices/cartSlice';
 import { setInitialState } from '../redux/slices/productContentSlice';
-import ModelSelector from './ModelSelector/ModelSelector';
+import { ModelSelector } from './ModelSelector/ModelSelector';
 import ModelBlockBadges from '../ModelBlockBadges/ModelBlockBadges';
 
-// Import Swiper React components
-import { Swiper, SwiperSlide } from 'swiper/react';
-
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/navigation';
-
-// import required modules
-import { Navigation, Autoplay } from 'swiper/modules';
+import DiscountBlock from './DiscountBlock/DiscountBlock';
+import { LeftSideSwiper } from './LeftSideSwiper/LeftSideSwiper';
+import YouMayLikeSwiper from './YouMayLikeSwiper/YouMayLikeSwiper';
+import Characteristics from './Characteristics/Characteristics';
+import SameModels from './SameModels/SameModels';
 
 export default function ProductContent(props) {
     const dispatch = useDispatch();
     const { id, cartTitle, image } = props;
+    const imageRef = useRef(null);
 
     const title = useSelector((state) => state.productContent.title);
     const currentPrice = useSelector((state) => state.productContent.currentPrice);
-
-    let swiperImages = [...new Array(9)].map((item) => (item = props.image));
-
-    const simTypesArr = ['single-SIM', 'dual-SIM'];
 
     useEffect(() => {
         dispatch(
@@ -42,34 +35,23 @@ export default function ProductContent(props) {
         return new Intl.NumberFormat('ru-RU').format(number);
     }
 
+    function setPaddingLeft() {
+        return props.widthCoefficient === 1 ? '50px' : '110px';
+    }
+
     return (
         <>
             <div className='model_wrapper'>
                 <div className='model__main_block'>
                     <div className='bigger__part'>
                         <div className='model__left_side'>
-                            <img className='model__image' src={props.image} />
-                            <Swiper
-                                direction='vertical'
-                                spaceBetween={25}
-                                loop={true}
-                                centeredSlides={true}
-                                watchOverflow={true}
-                                slidesPerView={3.3}
-                                autoplay={{
-                                    delay: 2500,
-                                    disableOnInteraction: false,
-                                }}
-                                modules={[Autoplay]}
-                                className='mySwiper'
-                                on={('slideChange', () => console.log(1))}
-                            >
-                                {swiperImages.map((item, index) => (
-                                    <SwiperSlide key={index}>
-                                        <img height='85px' src={item} alt='iphone image' />
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
+                            <img
+                                style={{ paddingLeft: setPaddingLeft() }}
+                                ref={imageRef}
+                                className='model__image'
+                                src={props.image}
+                            />
+                            <LeftSideSwiper image={props.image} />
                         </div>
                     </div>
 
@@ -85,9 +67,9 @@ export default function ProductContent(props) {
                             </div>
                         </div>
 
-                        <ModelSelector {...props} header={'Память'} />
+                        <ModelSelector {...props} />
 
-                        <ModelSelector simTypesArr={simTypesArr} header={'SIM-карта'} />
+                        <ModelSelector header={'SIM-карта'} />
 
                         <div className='bottom__part_price'>
                             <div className='br'></div>
@@ -126,8 +108,39 @@ export default function ProductContent(props) {
                                 </button>
                             </div>
                         </div>
+                        <div className='deliver__product'>
+                            <DiscountBlock
+                                mainText={'Получить скидку'}
+                                descrText={'Купон после оплаты'}
+                                rightSide={'до 30% стоимости'}
+                                imgSrc={
+                                    'https://icon-library.com/images/discount-icon-png/discount-icon-png-0.jpg'
+                                }
+                            />
+                            <div className='br'></div>
+                            <DiscountBlock
+                                mainText={'Обменять товар'}
+                                descrText={'Сдайте старую версию в обмен на новую'}
+                                rightSide={'бесплатно'}
+                                imgSrc={'https://cdn-icons-png.flaticon.com/512/2424/2424455.png'}
+                            />
+                        </div>
                     </div>
                 </div>
+
+                <div className='recommended__header'>Вам обязательно понравятся</div>
+            </div>
+            <div className='swiper__bottom__wrapper'>
+                <YouMayLikeSwiper />
+            </div>
+            <div className='br'></div>
+            <div className='model_wrapper'>
+                <Characteristics {...props} />
+
+                <div className='recommended__header'>Похожие товары</div>
+            </div>
+            <div className='swiper__bottom__wrapper'>
+                <SameModels currentId={props.id} category={props.category} />
             </div>
         </>
     );

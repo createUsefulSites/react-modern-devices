@@ -42,7 +42,7 @@ export default function YouMayLikeSwiper() {
                                     fullSize={false}
                                     clickHandler={() => {
                                         window.scrollTo(0, 0);
-                                        setInterval(() => location.reload(), 10);
+                                        setInterval(() => location.reload(), 1000);
                                     }}
                                     {...topModels[index]}
                                     heightValue='120px'
